@@ -19,7 +19,7 @@ export default class FullList implements List {
     }
 
     load(): void {
-        const storedList: string | null = localStorage.getItem("mylist")
+        const storedList: string | null = localStorage.getItem("myList")
         if (typeof storedList !== "string") return
 
         const parsedList: {
@@ -29,17 +29,17 @@ export default class FullList implements List {
         }[] = JSON.parse(storedList)
 
         parsedList.forEach((itemObj) => {
-            const newlistItem = new ListItem(
+            const newListItem = new ListItem(
                 itemObj._id,
                 itemObj._item,
                 itemObj._checked
             )
-            FullList.instance.addItem(newlistItem)
+            FullList.instance.addItem(newListItem)
         })
     }
 
     save(): void {
-        localStorage.setItem("mylist", JSON.stringify(this._list))
+        localStorage.setItem("myList", JSON.stringify(this._list))
     }
 
     clearList(): void {

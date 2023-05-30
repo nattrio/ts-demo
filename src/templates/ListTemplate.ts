@@ -8,10 +8,11 @@ interface DOMList {
 
 export default class ListTemplate implements DOMList {
     ul: HTMLUListElement
+
     static instance: ListTemplate = new ListTemplate()
 
     private constructor() {
-        this.ul = document.getElementById("ListItems") as HTMLUListElement
+        this.ul = document.getElementById("listItems") as HTMLUListElement
     }
 
     clear(): void {
@@ -19,6 +20,8 @@ export default class ListTemplate implements DOMList {
     }
 
     render(fullList: FullList): void {
+        this.clear()
+
         fullList.list.forEach((item) => {
             const li = document.createElement("li") as HTMLLIElement
             li.className = "item"
@@ -26,8 +29,6 @@ export default class ListTemplate implements DOMList {
             const check = document.createElement("input") as HTMLInputElement
             check.type = "checkbox"
             check.id = item.id
-
-            check.tabIndex = 0
             check.checked = item.checked
             li.append(check)
 
